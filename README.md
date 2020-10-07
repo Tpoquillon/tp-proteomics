@@ -137,28 +137,35 @@ NB : si vous avez des messages d’erreur qui s’affichent (missing precursor c
 #### Questions 
 ##### Pourquoi est-il important de bien choisir sa base de données?
 ```
+
 ```
 ##### Est-ce que l’on retrouvera toujours les mêmes protéines au cours du temps ?
 ```
+
 ```
 
 ##### Comment la taille de la base de données peut affecter le score de la protéine recherchée?
 ```
+
 ```
 
 ##### Est-ce que les modifications ajoutées sont les seules modifications que l’on peut attendre dans une expérience de shotgun proteomics?
 ```
+
 ```
 
 ##### Vous avez choisi la trypsine comme enzyme et choisi « specific », qu’est-ce que cela signifie, et comment cela peut affecter le processing ? 
 ```
+
 ```
 
 ##### Qu’est-ce qu’un missed cleavage ? pourquoi 2 et pas 0 ?
 ```
+
 ```
 ##### Qu’est-ce que la tolérance en masse, comment la calcule-t-on ?
 ```
+
 ```
 
 ### Visualisation des PSM, peptides - protéines
@@ -301,8 +308,8 @@ Representer graphiquement les données d'abondance et construire la pvalue des f
 
 ##### 3. A partir de cette échantillon de ratio d'abondance,  estimez la moyenne <img src="https://render.githubusercontent.com/render/math?math=\mu"> et l'ecart-type <img src="https://render.githubusercontent.com/render/math?math=\sigma"> d'une loi normale.
 ```
-
-
+moy = -0.639
+std = 0.222
 ```
 
 ##### 4. Superposez la densité de probabilité de cette loi sur l'histogramme. Attention, la densité de probabilité devra être mis à l'echelle de l'histogramme (cf ci-dessous)
@@ -316,12 +323,18 @@ scale = len(_)*dx # scale accordingly
 ax.plot(x, norm.pdf(x, mu, sqrt(S_2))*scale) # compute theoritical PDF and draw it
 ```
 
-![Histogramme à inserez ici](histogram_log2FC.png "Title")
+![Histogramme à inserez ici](assets/Image1.png)
+
+
+
+
 
 ##### 5. Quelles remarques peut-on faire à l'observation de l'histogramme et de loi théorique?
 
-```
-
+```markdown
+On peut remarquer que l'échantillon ne suit pas vraiment une loie normale:
+1. le pic dans les valeur de ratio de l'histograme se fait à une valeur plus grande que la moyenne
+2. les valeurs de ratio ne sont pas réparties de façon équilibrée autour de la moyenne des ratio
 
 ```
 
@@ -335,7 +348,7 @@ Sont condidérées comme surabondantes les proteines remplissant ces deux critè
 * <img src="https://render.githubusercontent.com/render/math?math=\text{Log}_2(\text{abundance ratio})\gt\mu%2B\sigma">  
 * <img src="https://render.githubusercontent.com/render/math?math=\text{p-value}>0.001">
 
-![Volcano plot + quadrant à inserez ici](histogram_log2FC.png "Title")
+![Volcano plot + quadrant à inserez ici](assets\Image2.png)
 
 ### Analyse Fonctionelle de pathway
 
@@ -345,7 +358,22 @@ Nous allons implementer une approche ORA (Over Representation Analysis) naive.
 
 Quelles sont leurs identifiants UNIPROT ?
 ``` 
+Les protéines surabondantes sont les protéines suivantes:
 
+ 'P0A8V6',
+ 'P0A9Q1',
+ 'P02358',
+ 'P0ACF8',
+ 'P62399',
+ 'P0A905',
+ 'P76506',
+ 'P13036',
+ 'P10384',
+ 'P06971',
+ 'P0A910',
+ 'P06996',
+ 'P76344',
+ 'P02931'
 
 
 ```
