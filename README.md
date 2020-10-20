@@ -115,7 +115,7 @@ De nombreux petits logiciels existent pour convertir vos fichiers bruts dans un 
 ##### Les données de QExactive ont été enregistrées en mode centroïde et non pas en mode Profiling. D’après vous quelle est la différence entre les deux modes?
 
 ```
-Centroîde ne présente qu'un seul pic par peptide chargé, celui de plus grande intensité, tandis que Profiling va faire apparaitre tout les pics. Le mode centroïde permet de diminuer la quantiter de données en sortie
+Centroïde ne présente qu'un seul pic par peptide chargé, celui de plus grande intensité, tandis que Profiling va faire apparaitre tout les pics. Le mode centroïde permet de diminuer la quantiter de données en sortie
 ```
 
 ### Identification des peptides par approche PSM Peptide to Spectrum Matching
