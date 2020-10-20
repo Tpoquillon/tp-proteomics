@@ -25,6 +25,7 @@ Outils à récupérer sur la plateforme pédagogique :
 Dans un dossier où vous conserverez toutes les données de ce TP, vous aurez placé au préalable les fichiers suivants :
 - données brutes du QEXactive (extension .raw)
 - fichiers convertis des données MS (extension .mgf)
+- nom de l'experiance sur ProteomXchange: pwd011286 
 
 ### Observations
 
@@ -37,13 +38,13 @@ Cette partie du TP est découpée en 4 grandes parties avec pour chacune des par
 ##### En quoi consiste l’approche Shotgun proteomics?
 
 ```
-
+C'est une technique de protéomique pour identifier des protéine dans un échantillon par spectrométrie de masse ou chromatographie liquide après digestion à la tripsine
 ```
 
 ##### Quel est l’objectif de cette approche ?
 
 ```
-
+Identifier le plus grand nombre de protéines et identifier des biomqueurs
 ```
 
 #### Procédure
@@ -59,38 +60,38 @@ Cette partie du TP est découpée en 4 grandes parties avec pour chacune des par
 ##### L’identification des protéines/ peptides se réalise grâce à une base de données de protéines. Quelle comparaison va être effectuée?
 
 ```
-
+On va comparer nos peptides trypsique in silico à des données experimantales
 ```
 
 ##### Existe t’il d’autres types de bases de données pour réaliser l’identification des peptides trypsiques dans un spectre?
 
 ```
-
+Il existe des librairie spéctrale, transcriptome
 ```
 
 ##### Est-ce qu’il est possible d’identifier des peptides sans base de données?
 ```
-
+Oui, avec des librairie spéctrale
 ```
 ##### Combien de protéines sont identifiées dans le protéome bactérien?
 ```
-
+Environ 4400 protéines dans le protéome d'E.coli k-12
 ```
 ##### Comment la liste des séquences des protéines est-elle établie ? Est-elle complète? 
 ```
-
+Elle sont annoté manuellement (Swissprot) ou in silico de façon automatique (TremBL), elle sont incomplètes
 ```
 ##### Quelle est la différence entre des séquences Swiss-prot et TremBL?
 ```
-
+Elle sont annoté manuellement (Swissprot) ou in silico de façon automatique (TremBL)
 ```
 ##### A quoi correspond la protéine P00761 et quelle est sa fonction ? 
 ```
-
+Il s'agit de la trypsine, elle digère les protéines après l'arginine et la lysine
 ```
 ##### Pourquoi doit-on rajouter cette protéine dans le fichier FASTA final du protéome bactérien?
 ```
-
+On souhaite s'affranchire de fausse identification, car la trypsine est présente dans note échantillon
 ```
 
 ### Création de la « peak list »
@@ -114,7 +115,7 @@ De nombreux petits logiciels existent pour convertir vos fichiers bruts dans un 
 ##### Les données de QExactive ont été enregistrées en mode centroïde et non pas en mode Profiling. D’après vous quelle est la différence entre les deux modes?
 
 ```
-
+Centroîde ne présente qu'un seul pic par peptide chargé, celui de plus grande intensité, tandis que Profiling va faire apparaitre tout les pics. Le mode centroïde permet de diminuer la quantiter de données en sortie
 ```
 
 ### Identification des peptides par approche PSM Peptide to Spectrum Matching
@@ -137,35 +138,35 @@ NB : si vous avez des messages d’erreur qui s’affichent (missing precursor c
 #### Questions 
 ##### Pourquoi est-il important de bien choisir sa base de données?
 ```
-
+Plus la base de donnée est grosse, plus on aura de match avec nos peptides, mais plus on auras de faut positifs (par exemple avec tremble).  Une base de protéine plus petite mais mieux annoté (comme Swisprot) aufre une couverture moins large, mais on est bien plus confident sur les résultats.
 ```
 ##### Est-ce que l’on retrouvera toujours les mêmes protéines au cours du temps ?
 ```
-
+Non puisque les bases de données évoluent, on peut donc avoir des résultats différents au cours du temps
 ```
 
 ##### Comment la taille de la base de données peut affecter le score de la protéine recherchée?
 ```
-
+Plus la base de donnée est grande, plus la probabilité de trouver au hasard une protéine qui match pour nos peptide augmente, donc la taille de la base de donnée diminue le score de la protéine recherché
 ```
 
 ##### Est-ce que les modifications ajoutées sont les seules modifications que l’on peut attendre dans une expérience de shotgun proteomics?
 ```
-
+Non, par exemple certaines modifications post traductionnelles peuvent avoir eu lieu
 ```
 
 ##### Vous avez choisi la trypsine comme enzyme et choisi « specific », qu’est-ce que cela signifie, et comment cela peut affecter le processing ? 
 ```
-
+On a choisir specific car on considère qu'elle coupe bien uniquement après la lysine et l'arginine. On ignore donc la possibilité qu'elle coupe une protéine autre part dans notre processing théorique.
 ```
 
 ##### Qu’est-ce qu’un missed cleavage ? pourquoi 2 et pas 0 ?
 ```
-
+On parle de misclivage lorsque la trypsine ne coupe pas une protéine après un arginine ou une lysine. La Trypsine n'ettant pas infaillible, on considère qu'il y a quelques missed clivages possible. C'est pourquoi on met 2 et pas 0
 ```
 ##### Qu’est-ce que la tolérance en masse, comment la calcule-t-on ?
 ```
-
+C'est la tolérence entre le rapport masse sur charge attendu et celui observé. On la calcule en fonction de la résolution de notre apareil et de la qualité de la calibration
 ```
 
 ### Visualisation des PSM, peptides - protéines
@@ -392,6 +393,12 @@ Les `entry` du fichier `data/uniprot-proteome_UP000000625.xml` présentent des b
 
 A ce stade, on se contentera des identifiants GO (eg `GO:0005737`). Vous pouvez faire un [set](https://docs.python.org/3.8/library/stdtypes.html#set) de cette liste d'identifiants GO pour en éliminer rapidement la redondance.
 
+```xml
+On observe 82 termes GO différents
+```
+
+
+
 #### 3. Obtention des paramètres du modèle
 
 Nous evaluerons la significativité de la présence de tous les termes GO portés par les protéines surabondantes à l'aide d'un modèle hypergéometrique.
@@ -401,9 +408,9 @@ Completer le tableau ci-dessous avec les quantités vous  semblant adéquates
 
 | Symbole | Paramètre | Quantités Biologique |
 | --- | --- | --- |
-| k | nombre de succès observés| |
+| k | nombre de succès observés| 14 |
 | K | nombre de succès possibles| |
-| n | nombre d'observations| |
+| n | nombre d'observations| 1746 |
 | N | nombre d'elements observables| |
 
 #### 4. Calcul de l'enrichissement en fonction biologiques
